@@ -14,22 +14,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryEntityService categoryEntityService;
 
-    @Override
     public List<Category> findAll() {
         return categoryEntityService.findAll();
     }
 
-    @Override
     public Category findById(String id) {
         return categoryEntityService.findById(id);
     }
 
-    @Override
     public Category save(Category category) {
         return categoryEntityService.save(category);
     }
 
-    @Override
     public void delete(String id) {
         categoryEntityService.deleteById(id);
     }
