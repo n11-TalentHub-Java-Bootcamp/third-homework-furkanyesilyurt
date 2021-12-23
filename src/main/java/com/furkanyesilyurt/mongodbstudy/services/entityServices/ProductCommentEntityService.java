@@ -4,6 +4,7 @@ import com.furkanyesilyurt.mongodbstudy.entities.Product;
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
 import com.furkanyesilyurt.mongodbstudy.repository.ProductCommentRepository;
 import com.furkanyesilyurt.mongodbstudy.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,11 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ProductCommentEntityService {
 
-    @Autowired
-    private ProductCommentRepository productCommentRepository;
+    //@Autowired
+    private final ProductCommentRepository productCommentRepository;
 
     public List<ProductComment> findAll(){
         return productCommentRepository.findAll();

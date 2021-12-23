@@ -2,6 +2,7 @@ package com.furkanyesilyurt.mongodbstudy.controller;
 
 import com.furkanyesilyurt.mongodbstudy.entities.Category;
 import com.furkanyesilyurt.mongodbstudy.services.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories/")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
+    //@Autowired
+    private final CategoryService categoryService;
 
     @GetMapping("")
     public List<Category> findAll() {

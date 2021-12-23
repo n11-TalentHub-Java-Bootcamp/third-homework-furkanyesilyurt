@@ -5,11 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
-@Document(collation = "Product")
+@Document(collection = "Products")
 public class Product {
 
     @Id
     private String id;
+
     private String name;
     private BigDecimal price;
     private String createDate;

@@ -2,6 +2,7 @@ package com.furkanyesilyurt.mongodbstudy.services.entityServices;
 
 import com.furkanyesilyurt.mongodbstudy.entities.Category;
 import com.furkanyesilyurt.mongodbstudy.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,11 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class CategoryEntityService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    //@Autowired
+    private final CategoryRepository categoryRepository;
 
     public List<Category> findAll(){
         return categoryRepository.findAll();

@@ -1,6 +1,8 @@
 package com.furkanyesilyurt.mongodbstudy.services;
 
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

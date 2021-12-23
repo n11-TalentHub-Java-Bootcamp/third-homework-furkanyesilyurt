@@ -2,14 +2,18 @@ package com.furkanyesilyurt.mongodbstudy.services;
 
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
 import com.furkanyesilyurt.mongodbstudy.services.entityServices.ProductCommentEntityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class ProductCommentServiceImpl implements ProductCommentService{
 
-    @Autowired
-    private ProductCommentEntityService productCommentEntityService;
+    //@Autowired
+    private final ProductCommentEntityService productCommentEntityService;
 
     @Override
     public List<ProductComment> findAll() {

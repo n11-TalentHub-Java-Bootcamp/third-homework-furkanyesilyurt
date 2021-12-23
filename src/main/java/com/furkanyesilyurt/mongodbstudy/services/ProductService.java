@@ -18,5 +18,4 @@ public interface ProductService {
     void deleteById(String id);
 
     List<ProductDetailDto> findAllProductByCategoryId(String categoryId);
-
 }

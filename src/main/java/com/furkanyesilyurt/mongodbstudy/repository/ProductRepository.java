@@ -11,5 +11,6 @@ import java.util.List;
 public interface ProductRepository extends MongoRepository<Product, String> {
 
     List<Product> findAllByCategoryId(String categoryId);
+
     ProductDetailDto findProductDetailDtoById(String id);
 }

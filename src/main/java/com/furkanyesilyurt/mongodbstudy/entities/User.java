@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 
-@Document(collation = "User")
+@Document(collection = "User")
 public class User {
 
     @Id

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.furkanyesilyurt.mongodbstudy.dto.ProductDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.Product;
 import com.furkanyesilyurt.mongodbstudy.services.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;

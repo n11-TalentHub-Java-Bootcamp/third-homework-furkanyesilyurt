@@ -2,6 +2,7 @@ package com.furkanyesilyurt.mongodbstudy.services.entityServices;
 
 import com.furkanyesilyurt.mongodbstudy.entities.Product;
 import com.furkanyesilyurt.mongodbstudy.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

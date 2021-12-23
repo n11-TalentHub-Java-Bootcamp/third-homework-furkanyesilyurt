@@ -20,4 +20,11 @@ public interface ProductConverter {
     @Mapping(target = "productPrice", source = "price")
     List<ProductDetailDto> convertAllProductListToProductDetailDtoList(List<Product> product);
 
+//    @AfterMapping
+//    default void setCategoryName(@MappingTarget final ProductDetailDto productDetailDto,
+//                                 Product product){
+//        if (product.getCategoryId() == null){
+//            urun.setKategori(null);
+//        }
+//    }
 }
