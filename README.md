@@ -1,1 +1,3 @@
-# third-homework
+Temel MongoDB Komutları: [https://github.com/furkanyesilyurt/n11-java-bootcamp/blob/main/week3-transactionalAndMongoDb/MongoDb.md](https://github.com/furkanyesilyurt/n11-java-bootcamp/blob/main/week3-transactionalAndMongoDb/MongoDb.md)
+
+Bootcamp sürecinde işlenilen konular ile ilgili aldığım notlar: [https://github.com/furkanyesilyurt/n11-java-bootcamp](https://github.com/furkanyesilyurt/n11-java-bootcamp)

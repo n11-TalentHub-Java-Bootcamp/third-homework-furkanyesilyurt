@@ -1,12 +1,15 @@
 package com.furkanyesilyurt.mongodbstudy.services;
 
+import com.furkanyesilyurt.mongodbstudy.converter.UserConverter;
+import com.furkanyesilyurt.mongodbstudy.dto.UserDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.User;
 import com.furkanyesilyurt.mongodbstudy.services.entityServices.UserEntityService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.furkanyesilyurt.mongodbstudy.converter.UserConverter.INSTANCE;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class UserServiceImpl implements UserService{
     private final UserEntityService userEntityService;
 
     @Override
-    public List<User> findAll() {
+    public List<UserDetailDto> findAll() {
         return userEntityService.findAll();
     }
 

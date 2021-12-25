@@ -1,5 +1,6 @@
 package com.furkanyesilyurt.mongodbstudy.services.entityServices;
 
+import com.furkanyesilyurt.mongodbstudy.dto.UserDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.User;
 import com.furkanyesilyurt.mongodbstudy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+import static com.furkanyesilyurt.mongodbstudy.converter.UserConverter.INSTANCE;
 
 @Service
 @Transactional
@@ -21,8 +24,8 @@ public class UserEntityService {
    //@Autowired
     private final UserRepository userRepository;
 
-    public List<User> findAll(){
-        return userRepository.findAll();
+    public List<UserDetailDto> findAll(){
+        return INSTANCE.convertUserListToUserDetailDtos(userRepository.findAll());
     }
 
     public User findById(String id){
