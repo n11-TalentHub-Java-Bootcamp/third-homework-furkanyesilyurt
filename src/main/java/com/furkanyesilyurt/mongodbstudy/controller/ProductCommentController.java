@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.furkanyesilyurt.mongodbstudy.converter.ProductCommentConverter;
 import com.furkanyesilyurt.mongodbstudy.dto.ProductCommentDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
+import com.furkanyesilyurt.mongodbstudy.exceptions.ProductCommentNotFoundException;
 import com.furkanyesilyurt.mongodbstudy.repository.ProductCommentRepository;
 import com.furkanyesilyurt.mongodbstudy.services.ProductCommentService;
 import lombok.RequiredArgsConstructor;
@@ -33,17 +34,19 @@ public class ProductCommentController {
     private final ProductCommentService productCommentService;
 
     @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
     public List<ProductCommentDetailDto> findAll() {
         return productCommentService.findAll();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public MappingJacksonValue findById(@PathVariable String id) {
 
         ProductComment productComment = productCommentService.findById(id);
 
         if(productComment == null){
-            System.out.println("ProductComment is not found.");
+            throw new ProductCommentNotFoundException("ProductComment is not found. id = " + id);
         }
 
         WebMvcLinkBuilder linkToProductComment = WebMvcLinkBuilder.linkTo(
@@ -70,6 +73,7 @@ public class ProductCommentController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> save(@RequestBody ProductCommentDetailDto productCommentDetailDto) {
 
         ProductComment productComment = ProductCommentConverter.INSTANCE.convertProductCommentDetailDtoToProductComment(productCommentDetailDto);

@@ -1,7 +1,10 @@
 package com.furkanyesilyurt.mongodbstudy.dto;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
+//@Data
 public class ProductDetailDto {
 
     private String productName;
@@ -25,19 +28,19 @@ public class ProductDetailDto {
         this.categoryName = categoryName;
     }
 
-    public BigDecimal getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public String getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public BigDecimal getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.furkanyesilyurt.mongodbstudy.converter.UserConverter;
 import com.furkanyesilyurt.mongodbstudy.dto.UserDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.User;
+import com.furkanyesilyurt.mongodbstudy.exceptions.UserNotFoundException;
 import com.furkanyesilyurt.mongodbstudy.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.EntityModel;
@@ -31,18 +32,20 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("")
+    @ResponseStatus(HttpStatus.OK)
     public List<UserDetailDto> findAll(){
         return userService.findAll();
     }
 
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public MappingJacksonValue  findById(@PathVariable String id) {
 
         User user = userService.findById(id);
 
         if(user == null){
-            System.out.println("User not found. id = " + id);
+            throw new UserNotFoundException("User not found. id = " + id);
         }
 
         WebMvcLinkBuilder linkToUser = WebMvcLinkBuilder.linkTo(
@@ -68,6 +71,7 @@ public class UserController {
     }
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> save(@Valid @RequestBody UserDetailDto userDetailDto) {
 
         User user = UserConverter.INSTANCE.convertUserDetailDtoToUser(userDetailDto);
