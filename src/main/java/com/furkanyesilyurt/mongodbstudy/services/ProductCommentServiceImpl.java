@@ -1,5 +1,6 @@
 package com.furkanyesilyurt.mongodbstudy.services;
 
+import com.furkanyesilyurt.mongodbstudy.dto.ProductCommentDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
 import com.furkanyesilyurt.mongodbstudy.services.entityServices.ProductCommentEntityService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class ProductCommentServiceImpl implements ProductCommentService{
     private final ProductCommentEntityService productCommentEntityService;
 
     @Override
-    public List<ProductComment> findAll() {
+    public List<ProductCommentDetailDto> findAll() {
         return productCommentEntityService.findAll();
     }
 

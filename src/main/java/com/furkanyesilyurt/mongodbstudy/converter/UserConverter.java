@@ -13,6 +13,10 @@ public interface UserConverter {
 
     UserConverter INSTANCE = Mappers.getMapper(UserConverter.class);
 
-    List<UserDetailDto> convertUserListToUserDetailDtos (List<User> userList);
+    List<UserDetailDto> convertUserListToUserDetailDtos(List<User> userList); // for findAll
+
+    UserDetailDto convertUserToUserDetailDto(User user); // for findById
+
+    User convertUserDetailDtoToUser(UserDetailDto userDetailDto); // for save
 
 }

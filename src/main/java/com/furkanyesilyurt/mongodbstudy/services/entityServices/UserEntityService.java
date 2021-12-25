@@ -30,11 +30,11 @@ public class UserEntityService {
 
     public User findById(String id){
 
-        Optional<User> optional = userRepository.findById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
 
         User user = null;
-        if (optional.isPresent()){
-            user = optional.get();
+        if (optionalUser.isPresent()){
+            user = optionalUser.get();
         }
 
         return user;

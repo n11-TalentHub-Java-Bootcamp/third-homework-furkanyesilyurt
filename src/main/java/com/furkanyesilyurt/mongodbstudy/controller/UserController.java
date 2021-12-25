@@ -7,11 +7,16 @@ import com.furkanyesilyurt.mongodbstudy.dto.UserDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.User;
 import com.furkanyesilyurt.mongodbstudy.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -25,22 +30,6 @@ public class UserController {
     //@Autowired
     private final UserService userService;
 
-    //@GetMapping("")
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public MappingJacksonValue findAll() {
-//        List<User> userList = userService.findAll();
-//        List<UserDetailDto> userDtoList = UserConverter.INSTANCE.convertAllUsersToUserDTOs(userList);
-//
-//        String filterName = "UserDtoFilter";
-//
-//        SimpleFilterProvider simpleFilterProvider = getUserFilterProvider(filterName);
-//
-//        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(userDtoList);
-//        mappingJacksonValue.setFilters(simpleFilterProvider);
-//
-//        return  mappingJacksonValue;
-//    }
-
     @GetMapping("")
     public List<UserDetailDto> findAll(){
         return userService.findAll();
@@ -48,16 +37,50 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable String id) {
-        return userService.findById(id);
+    public MappingJacksonValue  findById(@PathVariable String id) {
+
+        User user = userService.findById(id);
+
+        if(user == null){
+            System.out.println("User not found. id = " + id);
+        }
+
+        WebMvcLinkBuilder linkToUser = WebMvcLinkBuilder.linkTo(
+                WebMvcLinkBuilder.methodOn(this.getClass())
+                        .findAll()
+        );
+
+        UserDetailDto userDetailDto = UserConverter.INSTANCE.convertUserToUserDetailDto(user);
+
+        String filterName = "UserDtoFilter";
+
+        SimpleFilterProvider filters = getUserFilterProvider(filterName);
+
+        EntityModel entityModel = EntityModel.of(userDetailDto);
+
+        entityModel.add(linkToUser.withRel("All-users"));
+
+        MappingJacksonValue mapping = new MappingJacksonValue(entityModel);
+
+        mapping.setFilters(filters);
+
+        return mapping;
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> save(@RequestBody User user) {
+    public ResponseEntity<Object> save(@Valid @RequestBody UserDetailDto userDetailDto) {
+
+        User user = UserConverter.INSTANCE.convertUserDetailDtoToUser(userDetailDto);
 
         user = userService.save(user);
 
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("{id}")
+                .buildAndExpand(user.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @DeleteMapping("/{id}")

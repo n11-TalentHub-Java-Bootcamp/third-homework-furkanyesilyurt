@@ -2,11 +2,16 @@ package com.furkanyesilyurt.mongodbstudy.dto;
 
 public class UserDetailDto {
 
+//    public UserDetailDto(){
+//        System.out.println("UserDetailDto is working.");
+//    }
+
     private String firstName;
     private String lastName;
     private String emailAdress;
     private String phoneNumber;
     private String userId;
+
 
     public String getFirstName() {
         return firstName;

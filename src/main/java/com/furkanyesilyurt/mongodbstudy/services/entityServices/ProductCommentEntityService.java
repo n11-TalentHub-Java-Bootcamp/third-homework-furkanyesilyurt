@@ -1,5 +1,7 @@
 package com.furkanyesilyurt.mongodbstudy.services.entityServices;
 
+import com.furkanyesilyurt.mongodbstudy.converter.ProductCommentConverter;
+import com.furkanyesilyurt.mongodbstudy.dto.ProductCommentDetailDto;
 import com.furkanyesilyurt.mongodbstudy.entities.Product;
 import com.furkanyesilyurt.mongodbstudy.entities.ProductComment;
 import com.furkanyesilyurt.mongodbstudy.repository.ProductCommentRepository;
@@ -12,6 +14,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import static com.furkanyesilyurt.mongodbstudy.converter.ProductCommentConverter.INSTANCE;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,8 +24,8 @@ public class ProductCommentEntityService {
     //@Autowired
     private final ProductCommentRepository productCommentRepository;
 
-    public List<ProductComment> findAll(){
-        return productCommentRepository.findAll();
+    public List<ProductCommentDetailDto> findAll(){
+        return INSTANCE.convertProductCommentListToProductCommentDetailDtos(productCommentRepository.findAll());
     }
 
     public ProductComment findById(String id){
