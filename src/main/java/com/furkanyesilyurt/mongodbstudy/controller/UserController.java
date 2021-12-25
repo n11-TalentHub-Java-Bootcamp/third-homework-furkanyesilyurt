@@ -45,7 +45,7 @@ public class UserController {
         User user = userService.findById(id);
 
         if(user == null){
-            throw new UserNotFoundException("User not found. id = " + id);
+            throw new UserNotFoundException("User not found. {id} = " + id);
         }
 
         WebMvcLinkBuilder linkToUser = WebMvcLinkBuilder.linkTo(
