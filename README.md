@@ -11,7 +11,8 @@ This project is a project using Spring and MongoDB that can do basic operations 
 * Services
 
 ## RESTful API Documentation
-
+This file is essentially a resource listing of this project's API which adheres to OpenAPI Specification.
+[api-docs.json](https://github.com/n11-TalentHub-Java-Bootcamp/third-homework-furkanyesilyurt/blob/main/api-docs.json)
 
 Temel MongoDB Komutları: [https://github.com/furkanyesilyurt/n11-java-bootcamp/blob/main/week3-transactionalAndMongoDb/MongoDb.md](https://github.com/furkanyesilyurt/n11-java-bootcamp/blob/main/week3-transactionalAndMongoDb/MongoDb.md)
 
