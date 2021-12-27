@@ -13,3 +13,12 @@ public class ProductCommentDetailDto {
     private String userId;
 
 }
+
+//DTO can be written in this way with the record keyword.
+//The record keyword is included with JDK 14.
+/**
+ public record class ProductCommentDetailDto(String comment,
+                                                Date commentDate,
+                                                String productId,
+                                                String userId){ }
+ */
